@@ -26,9 +26,10 @@ class LeafNode(HTMLNode):
         super().__init__(tag, value, None, props)
 
     def to_html(self):
-        if not self.value:
+        #print(f"LN::{self.__repr__()}::")
+        if self.value == None:
             raise ValueError("LeafNode: All leaf nodes require a value.")
-        if not self.tag:
+        if self.tag == None:
             return self.value
         tag_value = self.value
         returned_props = self.props_to_html()
@@ -44,13 +45,14 @@ class ParentNode(HTMLNode):
         super().__init__(tag, None, children, props)
 
     def to_html(self):
-        if not self.tag:
+        if self.tag == None:
             raise ValueError("ParentNode: The tag is not provided.")
-        if not self.children:
+        if self.children == None:
             raise ValueError("ParentNode: There are no children.")
         opening_tag = f"<{self.tag}>"
         closing_tag = f"</{self.tag}>"
         returned_html = ""
+        #print(f"pn_ch--{self.children}--")
         if len(self.children) == 0:
             returned_html += ""
             return f"{opening_tag}{returned_html}{closing_tag}"
