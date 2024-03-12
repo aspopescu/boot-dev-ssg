@@ -37,3 +37,10 @@ def source_to_destination_dirs(source, destination):
         destination_dirs.append((destination_dir, ptl[1]))
     return destination_dirs
 
+def create_file(contents, file_name, destination):
+    path = os.path.join(destination, file_name)
+    file = open(path, mode="w")
+    file.write(contents)
+    file.close()
+    return
+
